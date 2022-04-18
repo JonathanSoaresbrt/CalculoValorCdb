@@ -1,0 +1,44 @@
+<div class="container">
+  <form [formGroup]="CdbForm" (ngSubmit)="this[EventValue]()">
+    <h3>Calculo - Cdb</h3>
+    <div class="row">
+      <table class="table">
+        <tr>
+          <td>Valor Inicial</td>
+          <td>
+            <input type="number" format="currency" formControlName="ValorInicial">
+            <div *ngIf="submitted && CdbForm.controls.ValorInicial.errors" class="text-danger">
+              <div *ngIf="CdbForm.controls.ValorInicial.errors.required">O valor inicial é obrigatório</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Meses</td>
+          <td>
+            <input type="number" formControlName="Meses">
+            <div *ngIf="submitted && CdbForm.controls.Meses.errors" class="text-danger">
+              <div *ngIf="CdbForm.controls.Meses.errors.required">O mes é obrigatório</div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <button type="submit" class="btn btn-primary">{{EventValue}}</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="row">
+      <table class="table table-striped">
+        <tr>
+          <td>Valor Bruto</td>
+          <td>Valor Liquido</td>
+        </tr>
+        <tr *ngIf="submitted">
+          <td>{{data.valorBruto | currency : 'BRL'}}</td>
+          <td>{{data.valorLiquido | currency : 'BRL'}}</td>
+        </tr>
+      </table>
+    </div>
+  </form>
+</div>
